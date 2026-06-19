@@ -1,2 +1,2 @@
 # halmos-rewriting
-Rewriting of some proofs from Halmos's wonderful book "Naive Set Theory'
+We rewrite of some proofs from Halmos's wonderful book **Naive Set Theory**.
