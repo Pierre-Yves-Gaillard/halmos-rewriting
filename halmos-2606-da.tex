@@ -1,0 +1,196 @@
+% halmos-2606-da
+% https://docs.google.com/document/d/1CG73FCGnE5k9QH65ufOpDpaSV3ACvKxiLPim1fDOCJU/edit?tab=t.0
+% !TEX encoding = UTF-8 Unicode
+% https://github.com/matheusgirola/Halmos-Naive-Set-Theory-OCR-LaTeX-Reedition/tree/master
+\documentclass[12pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{amssymb,amsmath,amsthm} 
+\usepackage[letterpaper,top=60pt,left=60pt,right=60pt,bottom=70pt]{geometry} % print
+%\usepackage[letterpaper,total={155mm,207mm},centering]{geometry} % SMALL1 scribe
+%\usepackage[letterpaper,total={139mm,186mm},centering]{geometry} % SMALL2 scribe
+%\usepackage[letterpaper,total={124mm,166mm},centering]{geometry} % SMALL3 scribe last used
+\usepackage{microtype}
+%\usepackage{tikz-cd}\usepackage{varwidth}\usepackage{comment}
+\usepackage[pdfusetitle]{hyperref}
+%\usepackage{marvosym}% emoji https://tex.stackexchange.com/questions/3695/smileys-in-latex https://ctan.org/pkg/marvosym?lang=en
+\usepackage{biblatex} 
+\addbibresource{halmos-2606.bib} 
+%\pagestyle{empty}
+%\setlength\parindent{0pt}
+\setlength{\parskip}{3pt} % variable
+%\renewcommand{\baselinestretch}{1.1} % variable
+\newtheorem{thm}{Theorem}%[section] \newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma} %\newtheorem{remark}[thm]{Remark}\newtheorem{prop}[thm]{Proposition}
+\title{Rewriting some proofs from Halmos's set theory book} \author{Pierre-Yves Gaillard} \date{}
+
+\begin{document}% \tiny \scriptsize \footnotesize \small \normalsize \large \Large \LARGE \huge \Huge 
+
+\maketitle
+
+\section{Injectivity of the successor map} %%%%%%%%%%%%% 
+
+Here is a rewriting of some proofs from Halmos's wonderful book titled \textbf{Naive Set Theory} \cite{halmos_naive_1974}. \footnote{This text is available at \url{https://github.com/Pierre-Yves-Gaillard/halmos-rewriting}} Here is a more precise formulation: 
+More precisely, we are just rewriting Section~12 titled \textit{The Peano Axioms} and the beginning of Section~13 titled \textit{Arithmetic}. 
+
+Recall that the \textbf{successor} of the set \(x\) is the set \(x^+=x\cup\{x\}\). 
+
+At this point of the book we have just defined a set \(\omega\) such that \(\varnothing\in\omega\), where \(\varnothing\) is the empty set. When \(\varnothing\) is regarded as an element of \(\omega\), it is usually denoted by 0. 
+
+In addition to the condition \(0\in\omega\), the set \(\omega\) is characterized by the following properties: 
+\begin{equation}\label{E1}
+\text{\textit{if} } n \in\omega, \text{ \textit{then} } n^{+} \in \omega,
+\end{equation}
+\begin{equation}\label{E2}
+\text{\textit{if} }S\subset\omega,\text{ \textit{if} }0\in S,\text{ \textit{and if} }n^{+}\in S\text{ \textit{whenever} }n \in S,\text{ \textit{then} } S=\omega. 
+\end{equation}
+Property \eqref{E2} is known as the \textbf{principle of mathematical induction}. We shall now add to this list of properties of \(\omega\) two others: 
+\begin{equation}\label{E3}
+n^{+}\neq0\text{ \textit{for all} }n\text{ \textit{in} }\omega, 
+\end{equation}
+and
+\begin{equation}\label{E4}
+\text{\textit{if} }i\text{ \textit{and} }j\text{ \textit{are in} }\omega, \text{ \textit{and if} }i^{+}=j^{+}, \text{ \textit{then} }i=j. 
+\end{equation}
+
+The assertions \eqref{E1}--\eqref{E4}, together with the statement \(0\in\omega\), are known as the \textbf{Peano Axioms}. 
+
+We must prove \eqref{E3} and \eqref{E4}. Since \eqref{E3} is trivial, it suffices to prove \eqref{E4}. 
+
+Note that, for all \(i,j\in\omega\) we have 
+\begin{equation}\label{Ej+}
+j\in j^+,\ j\subset j^+\text{ and }i\in j^+\iff (i\in j\text{ or }i=j). 
+\end{equation}
+
+\begin{lem}\label{Ltrans} 
+For all \(i,j,k\in\omega\) we have \(i\in j\in k\implies i\in k\), or, equivalently, for all \(m,n\in\omega\) we have \(m\in n\implies m\subset n\). 
+\end{lem} 
+\begin{proof} 
+We prove \(i\in j\in k\implies i\in k\) by induction on \(k\). Denote by \(A(k)\) the statement to be proved. Then \(A(0)\) is obvious. To prove \(A(k)\implies A(k^+)\), we assume \(A(k)\) and \(i\in j\in k^+\), and we must show \(i\in k^+\). By \eqref{Ej+}, we have \(j\in k\) or \(j=k\), and we have to prove \(i\in k\) or \(i=k\). We easily see that we have in fact \(i\in k\) in both cases. 
+\end{proof} 
+
+\begin{proof}[Proof of \eqref{E4}] 
+Assume \(i\ne j\) for the sake of contradiction. We get \(i\in j\in i\) by \eqref{Ej+}, hence \(i\subset j\subset i\) by Lemma~\ref{Ltrans} (implication \(m\in n\implies m\subset n\)), hence \(i=j\). 
+\end{proof} 
+
+\section{Total order} %%%%%%%%%%%%%
+
+We want to prove: 
+\begin{thm}\label{Torder} 
+The inclusion relation \(\subset\) is a total order on \(\omega\), which we denote by \(\le\). Moreover, for all \(i,j\in\omega\) we have \(i<j\iff i\in j\). 
+\end{thm} 
+
+Let \(\land\) and \(\lor\) denote respectively the Boolean operators \emph{and} and \emph{or}. 
+
+\begin{lem}\label{Lij++} 
+For all \(i,j\in\omega\) we have \(i\in j\iff i^+\in j^+\). 
+\end{lem} 
+\begin{proof} 
+We first show that for all \(i,j\) we have \(i\in j\implies i^+\in j^+\). Let us denote the statement 
+\[
+i\in j\implies i^+\in j^+.
+\] 
+by \(B(j)\) (here \(i\) is considered as a parameter). The base case \(B(0)\) is vacuously true since \(i\in 0\) is false. Thus, it is enough to verify \(B(j)\implies B(j^+)\). So we assume \(B(j)\) and \(i\in j^+\), and we must show \(i^+\in j^{++}\). In view of \eqref{Ej+}, this means that we must prove 
+\[
+B(j)\land(i\in j\ \lor\ i=j)\implies i^+\in j^+\ \lor\ i^+=j^+,
+\] 
+which is trivial. 
+
+We now prove that for all \(i,j\) we have \(i^+\in j^+\implies i\in j\), that is 
+\[
+i^+\in j\ \lor\ i^+=j\implies i\in j.
+\] 
+This follows from \eqref{Ej+} and Lemma~\ref{Ltrans}. This completes the proof. 
+\end{proof} 
+
+\begin{lem}\label{Ldicho} 
+Set \(S=\{n^+\mid n\in\omega\}\). For all \(n\in\omega\), we have \(n\ne0\iff0\in n\iff n\in S\). 
+\end{lem} 
+\begin{proof} 
+Let \(C(n)\) be the statement \(n\ne0\iff0\in n\iff n\in S\). Then \(C(0)\) follows from \eqref{E3}. Let us assume \(C(n)\), and let us derive \(C(n^+)\). We must show \(n^+\ne0\iff0\in n^+\iff n^+\in S\). We know that \(n^+\ne0\) is true by \eqref{E3}, and \(n^+\in S\) is trivially true. Thus, it suffices to show \(0\in n^+\). If \(n=0\), we get \(0\in0^+\) by \eqref{Ej+}. If \(n\ne0\), we have \(0\in n\) by \(C(n)\), and thus \(0\in n^+\) by \eqref{Ej+}. 
+\end{proof} 
+
+\begin{lem}\label{Ltricho} 
+For all \(i,j\in\omega\) we have exactly one of the following: \(i\in j,\ i=j,\ j\in i\). 
+\end{lem} 
+\begin{proof} 
+Let \(D(i,j)\) be the statement ``we have exactly one of the following: \(i\in j,\ i=j,\ j\in i\)''. Lemma~\ref{Ldicho} implies \(D(i,0)\) and \(D(0,j)\) for all \(i,j\). Equation \eqref{E4} and Lemma~\ref{Lij++} entail \(D(i,j)\implies D(i^+,j^+)\) for all \(i,j\). Let \(E(i)\) be the statement that \(D(i,j)\) is true for all \(j\). Then \(E(0)\) holds. Assuming \(E(i)\), we must prove \(E(i^+)\), that is, given \(j\in\omega\), we must prove \(D(i^+,j)\). Lemma~\ref{Ldicho} implies \(j=0\) or \(j=k^+\) for some \(k\). We observed that \(D(i^+,j)\) holds for \(j=0\). For \(j=k^+\) we have \(E(i)\implies D(i,k)\implies D(i^+,j)\). 
+\end{proof} 
+
+\begin{proof}[Proof of Theorem \ref{Torder}] 
+Theorem \ref{Torder} follows from Lemmas \ref{Ltrans} and \ref{Ltricho}. 
+\end{proof} 
+
+Using Theorem \ref{Torder}, we equip \(\omega\) with the total order \(\le\) given by the inclusion relation.
+
+\begin{thm}\label{Two} 
+Every nonempty subset \(X\) of \(\omega\) has a least element. 
+\end{thm} 
+\begin{proof}
+Assume that \(X\subset\omega\) has no least element. We must show \(X=\varnothing\). It suffices to prove \(n\cap X=\varnothing\) for all \(n\in\omega\). This is true for \(n=0\). Assume, to the contrary, that it is true for \(n\) and false for \(n^+\). We get \(n\in X\), hence there is an \(x\in X\) which is less than \(n\), hence \(x\in n\cap X\), contradiction. 
+\end{proof} 
+
+\section{The Recursion Theorem} %%%%%%%%%%%%%%%%%%
+
+\begin{thm}[Recursion Theorem]\label{Trec} 
+If \(X\) is a set, if \(a\in X\), and if \(f:X\to X\) is a map, then there exists a unique map \(u:\omega\to X\) such that \(u(0)=a\) and \(u(n^+)=f(u(n))\) for all \(n\) in \(\omega\). 
+\end{thm} 
+
+We prove the uniqueness in Theorem \ref{Trec}. Let \(v:\omega\to X\) satisfy the same conditions as \(u\), and assume, to the contrary, that \(v\ne u\). By Theorem~\ref{Two}, Lemma~\ref{Ldicho} and the equality \(v(0)=u(0)\) there is a least \(n\in\omega\) such that \(v(n^+)\ne u(n^+)\). The minimality of \(n\) and the inequality \(n<n^+\) imply \(v(n)=u(n)\), and thus \(v(n^+)=f(v(n))=f(u(n))=u(n^+)\). 
+
+\begin{lem}\label{Lrec} 
+If \(X,a\) and \(f\) are as in Theorem \ref{Trec}, then for all \(n\in\omega\) there is a unique map \(u_n:n^+\to X\) such that \(u_n(0)=a\), and \(u_n(i^+)=f(u_n(i))\) whenever \(i^+\in n^+\). Moreover, the family \((u_n)_{n\in\omega}\) satisfies \(u_{n^+}(n^+)=f(u_n(n))\) for all \(n\). 
+\end{lem} 
+\begin{proof} 
+We first prove that for all \(n\) there is at most one such map \(u_n\). Let \(v:n^+\to X\) satisfy the same conditions as \(u_n\), and assume, to the contrary, that \(v\ne u_n\). By Theorem~\ref{Two}, Lemma~\ref{Ldicho} and the equality \(v(0)=u_n(0)\) there is a least \(i\in\omega\) such that \(v(i^+)\ne u(i^+)\). The minimality of \(i\) and the inequality \(i<i^+\) imply \(v(i)=u_n(i)\), and thus \(v(i^+)=f(v(i))=f(u_n(i))=u_n(i^+)\). Now we prove the existence of such a \(u_n\) by induction on \(n\). We define first \(u_0\) by \(u_0(0)=a\) and then \(u_{n^+}:n^{++}\to X\) by extending \(u_n:n^+\to X\) (which exists and has the relevant properties by the induction hypothesis) to a map \(n^{++}=n^+\cup\{n^+\}\to X\) via the formula \(u_{n^+}(n^+)=f(u_n(n))\). The equalities \(u_{n^+}(0)=a\) and \(u_{n^+}(i^+)=f(u_{n^+}(i))\) for \(i^+\in n^{++}\) follow immediately from the definition of \(u_{n^+}\) and the conditions that \(u_n\) satisfies under the induction hypothesis. 
+\end{proof} 
+
+\begin{proof}[Proof of Theorem \ref{Trec}] 
+It only remains to prove the existence. Let \((u_n)_{n\in\omega}\) be the family given by Lemma~\ref{Lrec}. Then we define \(u\) by \(u(n)=u_n(n)\), and the theorem follows from Lemma~\ref{Lrec}. 
+\end{proof} 
+
+\section{Finite sets} %%%%%%%%%%%%%%%
+
+If \(X\) and \(Y\) are two sets, we indicate the existence of a bijection \(X\to Y\) by \(X\sim Y\), and we say that \(X\) and \(Y\) are \textbf{equipotent}. 
+
+\begin{lem}\label{LabX} 
+Let \(X\) be a set and let \(a,b\in X\). Then \(X\setminus\{a\}\sim X\setminus\{b\}\).
+\end{lem} 
+\begin{proof} 
+We may assume \(a\ne b\). Then the map \(f:X\setminus\{a\}\to X\setminus\{b\}\) defined by \(f(x)=a\) if \(x=b\) and \(f(x)=x\) otherwise is bijective. 
+\end{proof} 
+
+\begin{lem}\label{LabXY} 
+Let \(X\) and \(Y\) be two sets, and let \(a\in X,b\in Y\). Then \(X\setminus\{a\}\sim Y\setminus\{b\}\) if and only if \(X\sim Y\). In particular, for \(n\in\omega\) we have \(X\setminus\{a\}\sim n\) if and only if \(X\sim n^+\).
+\end{lem} 
+\begin{proof} 
+We can extend any bijection \(X\setminus\{a\}\to Y\setminus\{b\}\) to a bijection \(X\to Y\) by mapping \(a\) to \(b\). Conversely, if \(f:X\to Y\) is bijective, then \(f(X\setminus\{a\})=Y\setminus\{f(a)\}\), and the result follows from Lemma~\ref{LabX}. 
+\end{proof} 
+
+\begin{lem}\label{Lbasic} 
+For all \(i,j\in\omega\) we have \(i\sim j\implies i=j\). 
+\end{lem} 
+\begin{proof} 
+Let \(F(i)\) be the following statement: for all \(j\in\omega\) we have \(i\sim j\implies i=j\). Then \(F(0)\) is clear. Let us prove \(F(i^+)\) assuming \(F(i)\). We have \(i^+\sim j\) and we must show \(i^+=j\). Since \(j\ne0\), Lemma~\ref{Ldicho} implies \(j=k^+\) for some \(k\). Since \(i^+\sim k^+\), Lemma~\ref{LabXY} entails \(i\sim k\), and \(F(i)\) yields \(i=k\), hence \(i^+=k^+=j\). 
+\end{proof} 
+
+We say that a set \(X\) is \textbf{finite} if it is equipotent to some \(n\in\omega\). Lemma~\ref{Lbasic} implies that a finite set is equipotent to a unique \(n\in\omega\). If this is the case, we write \(n=|X|\) and we say that \(n\) is the \textbf{number of elements} of \(X\). 
+
+\begin{lem}\label{Lsubset} 
+A subset of a finite set is finite. 
+\end{lem} 
+\begin{proof} 
+It suffices to show that a subset \(X\) of \(n\in\omega\) is finite. We induct on \(n\). If \(n=0\), this is obvious. Assume that the statement holds for \(n\) and let us prove it for \(n^+\). So let \(X\subset n^+=n\cup\{n\}\). We may assume \(X\ne n^+\). Then \(X\) is contained in \(n^+\setminus\{i\}\) for some \(i\in n^+\), hence Lemma~\ref{LabXY} implies that \(X\) is equipotent to some subset \(Y\) of \(n=n^+\setminus\{n\}\), hence \(Y\) is finite by the induction hypothesis. 
+\end{proof} 
+
+\begin{lem}\label{Lunion} 
+The union of two finite sets is finite. 
+\end{lem} 
+\begin{proof} 
+We first consider the particular case when our finite sets are \emph{disjoint}. Given \(j\in\omega\), let \(G(i)\) be the following statement: the conditions \(i\in\omega,i\sim X,j\sim Y\) and \(X\cap Y=\varnothing\) imply that \(X\cup Y\) is finite. Then \(G(0)\) is obvious. Let us prove \(G(i^+)\) assuming \(G(i)\). We have \(i^+\sim X,j\sim Y,X\cap Y=\varnothing\), and we must show that \(X\cup Y\) is finite. Let \(a\) be in \(X\). Then \(X\setminus\{a\}\sim i\) by Lemma~\ref{LabXY}; hence, \((X\cup Y)\setminus\{a\}=(X\setminus\{a\})\cup Y\) is finite by \(G(i)\), and thus \(X\cup Y\) is finite by Lemma~\ref{LabXY}. This proves the result when the sets are disjoint. If \(X\) and \(Y\) are arbitrary finite sets, \(X \cup Y\) can be written as the union of three pairwise disjoint sets: \(X \setminus Y\), \(X \cap Y\), and \(Y\setminus X\). Because each of these is a subset of either \(X\) or \(Y\), they are finite by Lemma~\ref{Lsubset}. The general case then follows directly from the disjoint case. 
+\end{proof} 
+
+Let \(i,j\in\omega\). It is easy to see that there are sets \(X\) and \(Y\) such that \(i\sim X,j\sim Y, X\cap Y=\varnothing\) (for example, \(X=i,Y=j\times 0^+\)), and that the element \(|X\cup Y|\in\omega\) (which exists by Lemma~\ref{Lunion}) depends only on \(i\) and \(j\), and not on the choice of \(X\) and \(Y\), so that we can define the \textbf{sum} \(i+j\in\omega\) of \(i\) and \(j\) by \(i+j=|X\cup Y|\). We call this operation \textbf{addition}. Then, properties such as associativity and commutativity of addition follow swiftly from the corresponding properties of the union of sets (which follow in turn from the corresponding properties of the Boolean operator \(\lor\)). One can also define multiplication and exponentiation along the same lines. 
+
+\printbibliography
+
+\end{document}
