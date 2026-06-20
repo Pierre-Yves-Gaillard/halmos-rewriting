@@ -57,19 +57,19 @@ The assertions \eqref{E1}--\eqref{E4}, together with the statement \(0\in\omega\
 We must prove \eqref{E3} and \eqref{E4}. Since \eqref{E3} is trivial, it suffices to prove \eqref{E4}. 
 
 Note that, for all \(i,j\in\omega\) we have 
-\begin{equation}\label{Ej+}
+\begin{equation}\label{Emain}
 j\in j^+,\ j\subset j^+\text{ and }i\in j^+\iff (i\in j\text{ or }i=j). 
-\end{equation}
+\end{equation} 
 
-\begin{lem}\label{Ltrans} 
+\begin{lem}\label{Lmain} 
 For all \(i,j,k\in\omega\) we have \(i\in j\in k\implies i\in k\), or, equivalently, for all \(m,n\in\omega\) we have \(m\in n\implies m\subset n\). 
 \end{lem} 
 \begin{proof} 
-We prove \(i\in j\in k\implies i\in k\) by induction on \(k\). Denote by \(A(k)\) the statement to be proved. Then \(A(0)\) is obvious. To prove \(A(k)\implies A(k^+)\), we assume \(A(k)\) and \(i\in j\in k^+\), and we must show \(i\in k^+\). By \eqref{Ej+}, we have \(j\in k\) or \(j=k\), and we have to prove \(i\in k\) or \(i=k\). We easily see that we have in fact \(i\in k\) in both cases. 
+Given \(i,j\in\omega\) we denote by \(A(k)\) the statement \(i\in j\in k\implies i\in k\), and we prove \(A(k)\) for all \(k\) by induction. Note that \(A(0)\) is obvious. To prove \(A(k)\implies A(k^+)\), we assume \(A(k)\) and \(i\in j\in k^+\). We must show \(i\in k^+\). By \eqref{Emain}, we have \(j\in k\) or \(j=k\), and we have to prove \(i\in k\) or \(i=k\). We easily see that we have in fact \(i\in k\) in both cases. 
 \end{proof} 
 
 \begin{proof}[Proof of \eqref{E4}] 
-Assume \(i\ne j\) for the sake of contradiction. We get \(i\in j\in i\) by \eqref{Ej+}, hence \(i\subset j\subset i\) by Lemma~\ref{Ltrans} (implication \(m\in n\implies m\subset n\)), hence \(i=j\). 
+Assume \(i\ne j\) for the sake of contradiction. We get \(i\in j\in i\) by \eqref{Emain}, hence \(i\subset j\subset i\) by Lemma~\ref{Lmain} (implication \(m\in n\implies m\subset n\)), hence \(i=j\). 
 \end{proof} 
 
 \section{Total order} %%%%%%%%%%%%%
@@ -85,28 +85,28 @@ Let \(\land\) and \(\lor\) denote respectively the Boolean operators \emph{and} 
 For all \(i,j\in\omega\) we have \(i\in j\iff i^+\in j^+\). 
 \end{lem} 
 \begin{proof} 
-We first show that for all \(i,j\) we have \(i\in j\implies i^+\in j^+\). Let us denote the statement 
+\(\impliedby\): By \eqref{Emain} it suffices to show 
+\[
+i^+\in j\ \lor\ i^+=j\implies i\in j.
+\] 
+This follows from \eqref{Emain} and Lemma~\ref{Lmain}. 
+
+\(\implies\): Let us denote the statement 
 \[
 i\in j\implies i^+\in j^+.
 \] 
-by \(B(j)\) (here \(i\) is considered as a parameter). The base case \(B(0)\) is vacuously true since \(i\in 0\) is false. Thus, it is enough to verify \(B(j)\implies B(j^+)\). So we assume \(B(j)\) and \(i\in j^+\), and we must show \(i^+\in j^{++}\). In view of \eqref{Ej+}, this means that we must prove 
+by \(B(j)\) (here \(i\) is considered as a parameter), and let us prove \(B(j)\) for all \(j\). The base case \(B(0)\) is vacuously true since \(i\in 0\) is false. Thus, it is enough to verify \(B(j)\implies B(j^+)\). So we assume \(B(j)\) and \(i\in j^+\), and we must show \(i^+\in j^{++}\). In view of \eqref{Emain}, this means that we must prove 
 \[
 B(j)\land(i\in j\ \lor\ i=j)\implies i^+\in j^+\ \lor\ i^+=j^+,
 \] 
 which is trivial. 
-
-We now prove that for all \(i,j\) we have \(i^+\in j^+\implies i\in j\), that is 
-\[
-i^+\in j\ \lor\ i^+=j\implies i\in j.
-\] 
-This follows from \eqref{Ej+} and Lemma~\ref{Ltrans}. This completes the proof. 
 \end{proof} 
 
 \begin{lem}\label{Ldicho} 
 Set \(S=\{n^+\mid n\in\omega\}\). For all \(n\in\omega\), we have \(n\ne0\iff0\in n\iff n\in S\). 
 \end{lem} 
 \begin{proof} 
-Let \(C(n)\) be the statement \(n\ne0\iff0\in n\iff n\in S\). Then \(C(0)\) follows from \eqref{E3}. Let us assume \(C(n)\), and let us derive \(C(n^+)\). We must show \(n^+\ne0\iff0\in n^+\iff n^+\in S\). We know that \(n^+\ne0\) is true by \eqref{E3}, and \(n^+\in S\) is trivially true. Thus, it suffices to show \(0\in n^+\). If \(n=0\), we get \(0\in0^+\) by \eqref{Ej+}. If \(n\ne0\), we have \(0\in n\) by \(C(n)\), and thus \(0\in n^+\) by \eqref{Ej+}. 
+Let \(C(n)\) be the statement \(n\ne0\iff0\in n\iff n\in S\). Then \(C(0)\) follows from \eqref{E3}. Let us assume \(C(n)\), and let us derive \(C(n^+)\). We must show \(n^+\ne0\iff0\in n^+\iff n^+\in S\). We know that \(n^+\ne0\) is true by \eqref{E3}, and \(n^+\in S\) is trivially true. Thus, it suffices to show \(0\in n^+\). If \(n=0\), we get \(0\in0^+\) by \eqref{Emain}. If \(n\ne0\), we have \(0\in n\) by \(C(n)\), and thus \(0\in n^+\) by \eqref{Emain}. 
 \end{proof} 
 
 \begin{lem}\label{Ltricho} 
@@ -117,7 +117,7 @@ Let \(D(i,j)\) be the statement ``we have exactly one of the following: \(i\in j
 \end{proof} 
 
 \begin{proof}[Proof of Theorem \ref{Torder}] 
-Theorem \ref{Torder} follows from Lemmas \ref{Ltrans} and \ref{Ltricho}. 
+Theorem \ref{Torder} follows from Lemmas \ref{Lmain} and \ref{Ltricho}. 
 \end{proof} 
 
 Using Theorem \ref{Torder}, we equip \(\omega\) with the total order \(\le\) given by the inclusion relation.
