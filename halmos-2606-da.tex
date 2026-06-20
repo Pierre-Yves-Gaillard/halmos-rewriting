@@ -29,7 +29,7 @@
 
 \section{Injectivity of the successor map} %%%%%%%%%%%%% 
 
-Here is a rewriting of some proofs from Halmos's wonderful book titled \textbf{Naive Set Theory} \cite{halmos_naive_1974}. \footnote{This text is available at \url{https://github.com/Pierre-Yves-Gaillard/halmos-rewriting}} Here is a more precise formulation: 
+Here is a rewriting\footnote{This text is available at \url{https://github.com/Pierre-Yves-Gaillard/halmos-rewriting}} of some proofs from Halmos's wonderful book titled \textbf{Naive Set Theory} \cite{halmos_naive_1974}. Here is a more precise formulation: 
 More precisely, we are just rewriting Section~12 titled \textit{The Peano Axioms} and the beginning of Section~13 titled \textit{Arithmetic}. 
 
 Recall that the \textbf{successor} of the set \(x\) is the set \(x^+=x\cup\{x\}\). 
@@ -65,7 +65,7 @@ j\in j^+,\ j\subset j^+\text{ and }i\in j^+\iff (i\in j\text{ or }i=j).
 For all \(i,j,k\in\omega\) we have \(i\in j\in k\implies i\in k\), or, equivalently, for all \(m,n\in\omega\) we have \(m\in n\implies m\subset n\). 
 \end{lem} 
 \begin{proof} 
-Given \(i,j\in\omega\) we denote by \(A(k)\) the statement \(i\in j\in k\implies i\in k\), and we prove \(A(k)\) for all \(k\) by induction. Note that \(A(0)\) is obvious. To prove \(A(k)\implies A(k^+)\), we assume \(A(k)\) and \(i\in j\in k^+\). We must show \(i\in k^+\). By \eqref{Emain}, we have \(j\in k\) or \(j=k\), and we have to prove \(i\in k\) or \(i=k\). We easily see that we have in fact \(i\in k\) in both cases. 
+Given \(i,j\in\omega\) we denote by \(A(k)\) the statement \(i\in j\in k\implies i\in k\), and we prove \(A(k)\) for all \(k\) by induction. Note that \(A(0)\) is obvious. To prove \(A(k)\implies A(k^+)\), we assume \(A(k)\) and \(i\in j\in k^+\). We must show \(i\in k^+\). By \eqref{Emain}, we have \(j\in k\) or \(j=k\), and we want to prove \(i\in k\) or \(i=k\). We easily see that we have in fact \(i\in k\) in both cases. 
 \end{proof} 
 
 \begin{proof}[Proof of \eqref{E4}] 
